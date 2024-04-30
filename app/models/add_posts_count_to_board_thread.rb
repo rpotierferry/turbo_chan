@@ -1,0 +1,2 @@
+class AddPostsCountToBoardThread < ApplicationRecord
+end
