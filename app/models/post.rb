@@ -2,6 +2,7 @@ class Post < ApplicationRecord
   before_create :assign_p_id
   belongs_to :board_thread, counter_cache: true
   has_many :votes, dependent: :destroy
+  has_one_attached :photo
 
   private
 
