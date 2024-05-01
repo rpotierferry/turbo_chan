@@ -37,3 +37,4 @@ to_do
 /private_lib/*
 db/grabbed.txt
 .gitignore
+.env

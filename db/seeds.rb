@@ -33,3 +33,8 @@ Post.create!(
   content: "Let's keep it civil",
   user_id: User.last.id
 )
+
+Vote.create!(
+  user_id: User.last.id,
+  post_id: Post.last.id
+)
