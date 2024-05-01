@@ -33,3 +33,7 @@
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+to_do
+/private_lib/*
+db/grabbed.txt
+.gitignore

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_30_133304) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_01_134029) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -21,6 +21,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_30_133304) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "posts_count", default: 0
+    t.boolean "pinned", default: false
     t.index ["board_id"], name: "index_board_threads_on_board_id"
     t.index ["user_id"], name: "index_board_threads_on_user_id"
   end
@@ -36,6 +37,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_30_133304) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "board_threads_count", default: 0
+    t.boolean "official", default: false
     t.index ["user_id"], name: "index_boards_on_user_id"
   end
 
