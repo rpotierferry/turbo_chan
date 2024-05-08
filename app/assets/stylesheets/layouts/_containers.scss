@@ -1,0 +1,39 @@
+.board {
+  width: 100%;
+  padding-right: var(--space-xs);
+  padding-left: var(--space-xs);
+  margin-left: auto;
+  margin-right: auto;
+
+  @include media(tabletAndUp) {
+    padding-right: var(--space-m);
+    padding-left: var(--space-m);
+    max-width: 60rem;
+  }
+}
+
+.thumb {
+  display: block;
+  margin-top: var(--space-xs);
+  padding-left: var(--space-xxxxs);
+  padding-right: var(--space-xxxxs);
+  border: var(--border);
+  border-radius: var(--border-radius);
+}
+
+.post-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: var(--space-xxxxs);
+  border-bottom: var(--border);
+}
+
+.post-footer {
+  display: flex;
+  justify-content: space-between;
+  border-top: var(--border);
+}
+
+.post-content {
+  display: block;
+}
