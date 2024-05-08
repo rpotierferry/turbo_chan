@@ -16,7 +16,11 @@ class BoardThreadsController < ApplicationController
     @thread.board = @board
     @post = Post.new(post_params)
     @post.is_op = true
-    @post.name = "Anonymous"
+    if current_user
+      @post.name = current_user.username
+    else
+      @post.name = "Anonymous"
+    end
     @post.board_thread = @thread
     if @post.save
       @thread.save

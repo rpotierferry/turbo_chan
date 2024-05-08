@@ -2,9 +2,15 @@
 <% if @rule_post %>
   <div>
     <div>
-      <%= cl_image_tag @rule_post.photo.key,
-      height: 100,
-      width: 100 %>
+      <% if @rule_post.photo_url %>
+        <%= image_tag @rule_post.photo_url,
+        height: 100,
+        width: 100 %>
+      <% else %>
+        <%= cl_image_tag @rule_post.photo.key,
+        height: 100,
+        width: 100 %>
+      <% end %>
     </div>
     <div>
       <h3><%= @rule_post.title %></h3>
@@ -16,3 +22,5 @@
 <% @threads.each do |t| %>
   <%= link_to t.posts.first.title, board_board_thread_path(@board, t) %>
 <% end %>
+
+<%= link_to 'Back to board list', boards_path %>
