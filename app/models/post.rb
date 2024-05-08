@@ -3,11 +3,17 @@ class Post < ApplicationRecord
   belongs_to :board_thread, counter_cache: true
 
   has_many :votes, dependent: :destroy
+  has_many :replies, -> { where(type: 'Reply') }, class_name: 'Post', foreign_key: 'parent_post_id', dependent: :destroy
+  belongs_to :parent_post, class_name: 'Post', optional: true
+
   has_one_attached :photo
 
   validates :title, presence: true, if: :op?, length: { minimum: 6, maximum: 64 }
   validates :content, presence: true, if: :op?, length: { maximum: 256 }
-  validates :photo, presence: true, if: :op?
+  # validates :photo, presence: true, if: :op?
+  validate :photo_or_url_present, if: :op?
+
+  before_validation :inherit_board_id_from_parent
 
   private
 
@@ -18,5 +24,15 @@ class Post < ApplicationRecord
 
   def op?
     self.is_op
+  end
+
+  def photo_or_url_present
+    unless photo.attached? || photo_url.present?
+      errors.add(:photo, 'or photo url must be present')
+    end
+  end
+
+  def inherit_board_id_from_parent
+    self.board_id = parent_post.board_id if parent_post.present?
   end
 end

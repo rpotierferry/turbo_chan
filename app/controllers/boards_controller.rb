@@ -9,6 +9,6 @@ class BoardsController < ApplicationController
     if @rule_thread
       @rule_post = @rule_thread.posts.first
     end
+    @threads = @board.board_threads.where(pinned: false).includes(:posts)
   end
-
 end

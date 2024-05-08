@@ -1,3 +1,4 @@
+<%= link_to "Create thread", new_board_board_thread_path(@board) %>
 <% if @rule_post %>
   <div>
     <div>
@@ -10,4 +11,8 @@
       <p><%= @rule_post.content %></p>
     </div>
   </div>
+<% end %>
+
+<% @threads.each do |t| %>
+  <%= link_to t.posts.first.title, board_board_thread_path(@board, t) %>
 <% end %>

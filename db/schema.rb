@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_01_154626) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_07_102404) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -44,14 +44,12 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_01_154626) do
 
   create_table "board_threads", force: :cascade do |t|
     t.bigint "board_id", null: false
-    t.bigint "user_id"
     t.bigint "bt_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "posts_count", default: 0
     t.boolean "pinned", default: false
     t.index ["board_id"], name: "index_board_threads_on_board_id"
-    t.index ["user_id"], name: "index_board_threads_on_user_id"
   end
 
   create_table "boards", force: :cascade do |t|
@@ -79,7 +77,12 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_01_154626) do
     t.bigint "p_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "name"
+    t.string "photo_url"
+    t.string "type"
+    t.bigint "parent_post_id"
     t.index ["board_thread_id"], name: "index_posts_on_board_thread_id"
+    t.index ["parent_post_id"], name: "index_posts_on_parent_post_id"
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
@@ -109,7 +112,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_01_154626) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "board_threads", "boards"
-  add_foreign_key "board_threads", "users"
   add_foreign_key "boards", "users"
   add_foreign_key "posts", "board_threads"
   add_foreign_key "posts", "users"
