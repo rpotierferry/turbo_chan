@@ -14,13 +14,13 @@ class BoardThreadsController < ApplicationController
     @thread = BoardThread.new
     @board = Board.find(params[:board_id])
     @thread.board = @board
-    @thread.save
     @post = Post.new(post_params)
     @post.is_op = true
     @post.name = "Anonymous"
     @post.board_thread = @thread
     if @post.save
-      redirect_to board_board_thread_path(@thread)
+      @thread.save
+      redirect_to board_board_thread_path(@board, @thread)
     else
       render :new, status: :unprocessable_entity
     end
@@ -29,6 +29,6 @@ class BoardThreadsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:title, :content, :photo)
+    params.require(:post).permit(:title, :content, :photo, :photo_url)
   end
 end

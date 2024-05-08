@@ -10,7 +10,6 @@ class Post < ApplicationRecord
 
   validates :title, presence: true, if: :op?, length: { minimum: 6, maximum: 64 }
   validates :content, presence: true, if: :op?, length: { maximum: 256 }
-  # validates :photo, presence: true, if: :op?
   validate :photo_or_url_present, if: :op?
 
   before_validation :inherit_board_id_from_parent

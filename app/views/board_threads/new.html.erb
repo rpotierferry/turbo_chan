@@ -6,5 +6,7 @@
   <%= f.text_area :content %>
   <%= f.label "Upload a picture" %>
   <%= f.file_field :photo %>
-  <%= f.submit %>
+  <%= f.label "Link to a picture" %>
+  <%= f.text_field :photo_url %>
+  <%= f.submit 'Create thread' %>
 <% end %>
