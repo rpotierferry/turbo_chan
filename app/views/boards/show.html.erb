@@ -1,26 +1,14 @@
-<%= link_to "Create thread", new_board_board_thread_path(@board) %>
-<% if @rule_post %>
-  <div>
-    <div>
-      <% if @rule_post.photo_url %>
-        <%= image_tag @rule_post.photo_url,
-        height: 100,
-        width: 100 %>
-      <% else %>
-        <%= cl_image_tag @rule_post.photo.key,
-        height: 100,
-        width: 100 %>
-      <% end %>
-    </div>
-    <div>
-      <h3><%= @rule_post.title %></h3>
-      <p><%= @rule_post.content %></p>
-    </div>
-  </div>
-<% end %>
+<main>
+  <%= link_to "Create thread", new_board_board_thread_path(@board) %>
+  <% if @rule_post %>
+    <%= render 'components/rule_post', post: @rule_post %>
+  <% end %>
 
-<% @threads.each do |t| %>
-  <%= link_to t.posts.first.title, board_board_thread_path(@board, t) %>
-<% end %>
+  <% @threads.each do |t| %>
+    <%= link_to board_board_thread_path(@board, t) do %>
+      <%= render 'components/thread_thumb', thread: t %>
+    <% end %>
+  <% end %>
 
-<%= link_to 'Back to board list', boards_path %>
+  <%= link_to 'Back to board list', boards_path %>
+</main>

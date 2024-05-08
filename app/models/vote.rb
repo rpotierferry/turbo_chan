@@ -7,6 +7,6 @@ class Vote < ApplicationRecord
 
   def update_post_rating
     new_rating = post.votes.sum(:value)
-    post.update(post_rating: new_rating)
+    post.update(rating: new_rating)
   end
 end

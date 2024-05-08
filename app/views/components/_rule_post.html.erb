@@ -1,0 +1,13 @@
+<div>
+  <% if post.photo_url %>
+    <%= image_tag post.photo_url,
+    height: 100,
+    width: 100 %>
+  <% else %>
+    <%= cl_image_tag post.photo.key,
+    height: 100,
+    width: 100 %>
+  <% end %>
+  <h3><%= post.title %></h3>
+  <p><%= post.content %></p>
+</div>

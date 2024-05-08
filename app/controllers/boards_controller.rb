@@ -1,6 +1,6 @@
 class BoardsController < ApplicationController
   def index
-    @boards = Board.all.group_by(&:category)
+    @boards = Board.all.group_by(&:category).sort
   end
 
   def show

@@ -1,3 +1,16 @@
+<% post = thread.posts.first %>
 <div class="thread__thumb">
-  
+  <%= render 'components/post_header', post: post %>
+  <h3><%= post.title %></h3>
+  <% if post.photo_url %>
+    <%= image_tag post.photo_url,
+        height: 100,
+        width: 150 %>
+  <% else %>
+    <%= cl_image_tag post.photo.key,
+        height: 100,
+        width: 150 %>
+  <% end %>
+  <p><%= post.content %></p>
+  <%= render 'components/post_footer', post: post %>
 </div>
