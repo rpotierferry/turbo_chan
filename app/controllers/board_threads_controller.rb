@@ -1,18 +1,20 @@
 class BoardThreadsController < ApplicationController
+  before_action :set_board, only: ['show', 'new', 'create']
+  before_action :set_thread, only: ['show']
+
   def show
-    @thread = BoardThread.find(params[:id])
-    @board = Board.find(params[:board_id])
     @posts = @thread.posts
+    @op = @posts.find(&:is_op)
+    @posts = @posts.reject(&:is_op)
   end
+
   def new
-    @board = Board.find(params[:board_id])
     @thread = BoardThread.new
     @post = Post.new
   end
 
   def create
     @thread = BoardThread.new
-    @board = Board.find(params[:board_id])
     @thread.board = @board
     @post = Post.new(post_params)
     @post.is_op = true
@@ -22,7 +24,7 @@ class BoardThreadsController < ApplicationController
       @post.name = "Anonymous"
     end
     @post.board_thread = @thread
-    if @thread.save && @post.save
+    if @post.save && @thread.save
       redirect_to board_board_thread_path(@board, @thread)
     else
       render :new, status: :unprocessable_entity
@@ -33,5 +35,13 @@ class BoardThreadsController < ApplicationController
 
   def post_params
     params.require(:post).permit(:title, :content, :photo, :photo_url)
+  end
+
+  def set_board
+    @board = Board.find(params[:board_id])
+  end
+
+  def set_thread
+    @thread = BoardThread.find(params[:id])
   end
 end

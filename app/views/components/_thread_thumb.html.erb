@@ -1,18 +1,27 @@
 <% post = thread.posts.first %>
 <div class="thumb" id="t<%= thread.bt_id %>">
-  <%= render 'components/post_header', post: post %>
-  <div class="post-content">
-    <h3><%= post.title %></h3>
-    <% if post.photo_url %>
-      <%= image_tag post.photo_url,
-          height: 100,
-          width: 150 %>
-    <% else %>
-      <%= cl_image_tag post.photo.key,
-          height: 100,
-          width: 150 %>
-    <% end %>
-    <p><%= post.content %></p>
+  <div class="post-header">
+    <span><%= post.name %></span>
+    <span><%= post.created_at %></span>
   </div>
-  <%= render 'components/post_footer', post: post %>
+
+  <div>
+    <h3><%= post.title %></h3>
+    <div class="post-thumb-content">
+      <% if post.photo_url != '' %>
+        <%= image_tag post.photo_url,
+            height: 100,
+            width: 150 %>
+      <% else %>
+        <%= cl_image_tag post.photo.key,
+            height: 100,
+            width: 150 %>
+      <% end %>
+      <p><%= post.content %></p>
+    </div>
+  </div>
+  <div class="post-footer">
+    <span><%= post.rating %></span>
+    <span><%= thread.posts_count %> posts</span>
+  </div>
 </div>

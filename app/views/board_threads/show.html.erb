@@ -1,6 +1,14 @@
 <main class="thread">
-  <%= render "components/posts", posts: @posts %>
 
-  <%= link_to 'Reply to thread', new_board_board_thread_post_path(@board, @thread) %>
-  <%= link_to 'Back to board', board_path(@board) %>
+  <%= render "components/op", post: @op %>
+
+  <% @posts.each do |post| %>
+    <%= render "components/post", post: post %>
+  <% end %>
+
+  <div class="thread-footer">
+    <%= link_to 'Reply to thread', new_board_board_thread_post_path(@board, @thread) %>
+    <%= link_to 'Back to board', board_path(@board) %>
+  </div>
+
 </main>

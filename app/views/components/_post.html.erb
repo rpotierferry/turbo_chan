@@ -1,0 +1,18 @@
+<div class="post post-container">
+  <%= render 'components/post_header', post: post %>
+  <div>
+    <% if post.photo_url != '' %>
+      <%= image_tag post.photo_url,
+      height: 100,
+      width: 150 %>
+    <% elsif post.photo.attached? %>
+      <%= cl_image_tag post.photo.key,
+      height: 100,
+      width: 150 %>
+    <% end %>
+    <p>
+      <%= post.content %>
+    </p>
+  </div>
+  <%= render 'components/post_footer', post: post %>
+</div>

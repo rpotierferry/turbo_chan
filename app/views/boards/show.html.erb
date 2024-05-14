@@ -1,6 +1,6 @@
 <main class="board" data-controller="toggle-form">
   <div class="hidden" data-toggle-form-target="form">
-    <%= render 'components/new_thread_form', board: @board %>
+    <%= render 'components/new_thread_form', locals: { board: @board } %>
   </div>
   <%= link_to "Create thread",
   "#",
