@@ -1,16 +1,5 @@
-<main>
-  <% @posts.each do |post| %>
-    <% if post.is_op? %>
-      <h2>
-        <%= post.title %>
-      </h2>
-    <% end %>
-
-    <p>
-      <%= post.content %>
-    </p>
-
-  <% end %>
+<main class="thread">
+  <%= render "components/posts", posts: @posts %>
 
   <%= link_to 'Reply to thread', new_board_board_thread_post_path(@board, @thread) %>
   <%= link_to 'Back to board', board_path(@board) %>

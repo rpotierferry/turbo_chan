@@ -1,0 +1,19 @@
+<%= form_with(model: [board, BoardThread.new, Post.new], url: board_board_threads_path(board), html: { class: "form-container" }) do |f| %>
+  <div>
+    <%= f.label "Title" %>
+    <%= f.text_field :title %>
+  </div>
+  <div>
+    <%= f.label "Content" %>
+    <%= f.text_area :content %>
+  </div>
+  <div>
+    <%= f.label "Upload a picture" %>
+    <%= f.file_field :photo %>
+  </div>
+  <div>
+    <%= f.label "Link to a picture" %>
+    <%= f.text_field :photo_url %>
+  </div>
+  <%= f.submit 'Create thread' %>
+<% end %>

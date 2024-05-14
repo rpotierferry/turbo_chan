@@ -1,5 +1,5 @@
 <% post = thread.posts.first %>
-<div class="thumb">
+<div class="thumb" id="t<%= thread.bt_id %>">
   <%= render 'components/post_header', post: post %>
   <div class="post-content">
     <h3><%= post.title %></h3>

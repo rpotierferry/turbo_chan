@@ -1,12 +1,4 @@
-<h1>Create thread</h1>
-<%= form_with(model: [@board, @thread, @post], url: board_board_threads_path(@board)) do |f| %>
-  <%= f.label "Title" %>
-  <%= f.text_field :title %>
-  <%= f.label "Content" %>
-  <%= f.text_area :content %>
-  <%= f.label "Upload a picture" %>
-  <%= f.file_field :photo %>
-  <%= f.label "Link to a picture" %>
-  <%= f.text_field :photo_url %>
-  <%= f.submit 'Create thread' %>
-<% end %>
+<main>
+  <h1>Create thread</h1>
+    <%= render 'components/new_thread_form' %>
+</main>

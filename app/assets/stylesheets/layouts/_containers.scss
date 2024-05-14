@@ -37,3 +37,27 @@
 .post-content {
   display: block;
 }
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-s); // Adjust gap between fields
+  max-width: 500px; // Adjust width as needed
+  margin: 0 auto; // Centers the form on the page
+
+  div {
+    display: flex;
+    flex-direction: column;
+  }
+
+  label {
+    margin-bottom: var(--space-xxxs); // Space between label and input
+  }
+
+  input,
+  textarea {
+    padding: var(--space-xxxs); // Padding inside inputs
+    border: var(--border); // Border color
+    border-radius: var(--border-radius); // Rounded corners
+  }
+}

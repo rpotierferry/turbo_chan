@@ -22,8 +22,7 @@ class BoardThreadsController < ApplicationController
       @post.name = "Anonymous"
     end
     @post.board_thread = @thread
-    if @post.save
-      @thread.save
+    if @thread.save && @post.save
       redirect_to board_board_thread_path(@board, @thread)
     else
       render :new, status: :unprocessable_entity

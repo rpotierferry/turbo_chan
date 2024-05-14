@@ -1,5 +1,11 @@
-<main class="board">
-  <%= link_to "Create thread", new_board_board_thread_path(@board) %>
+<main class="board" data-controller="toggle-form">
+  <div class="hidden" data-toggle-form-target="form">
+    <%= render 'components/new_thread_form', board: @board %>
+  </div>
+  <%= link_to "Create thread",
+  "#",
+  data: { action: "click->toggle-form#toggleForm" }%>
+
   <% if @rule_post %>
     <%= render 'components/rule_post', post: @rule_post %>
   <% end %>

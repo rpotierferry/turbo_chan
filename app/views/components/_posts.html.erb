@@ -1,0 +1,12 @@
+<% posts.each do |post| %>
+  <% if post.is_op? %>
+    <h2>
+      <%= post.title %>
+    </h2>
+  <% end %>
+
+  <p>
+    <%= post.content %>
+  </p>
+
+<% end %>
