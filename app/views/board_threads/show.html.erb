@@ -3,7 +3,9 @@
   <%= render "components/op", post: @op %>
 
   <% @posts.each do |post| %>
-    <%= render "components/post", post: post %>
+    <%= turbo_frame_tag "post-#{post.id}" do %>
+      <%= render "components/post", post: post %>
+    <% end %>
   <% end %>
 
   <div class="thread-footer">

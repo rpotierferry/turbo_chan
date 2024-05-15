@@ -17,20 +17,20 @@ class PostsController < ApplicationController
   end
 
   def upvote
-    @post = Post.find(params[:post_id])
+    setup_vote
     @upvote = @post.votes.build(value: 1)
     @upvote.user = User.find(13)
     if @upvote.save
-      redirect_to board_board_thread_path(@post.board_thread)
+      redirect_to board_board_thread_path(@board, @thread)
     end
   end
 
   def downvote
-    @post = Post.find(params[:post_id])
+    setup_vote
     @upvote = @post.votes.build(value: -1)
     @upvote.user = User.find(13)
     if @upvote.save
-      redirect_to board_board_thread_path(@post.board_thread)
+      redirect_to board_board_thread_path(@board, @thread)
     end
   end
 
@@ -46,6 +46,12 @@ class PostsController < ApplicationController
   end
 
   def set_board_and_thread
+    @board = Board.find(params[:board_id])
+    @thread = BoardThread.find(params[:board_thread_id])
+  end
+
+  def setup_vote
+    @post = Post.find(params[:post_id])
     @board = Board.find(params[:board_id])
     @thread = BoardThread.find(params[:board_thread_id])
   end
