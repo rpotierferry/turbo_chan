@@ -10,7 +10,12 @@ Rails.application.routes.draw do
   root "boards#index"
   resources :boards do
     resources :board_threads do
-      resources :posts
+      resources :posts do
+        member do
+          post 'upvote'
+          post 'downvote'
+        end
+      end
     end
   end
 end

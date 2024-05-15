@@ -16,6 +16,24 @@ class PostsController < ApplicationController
     end
   end
 
+  def upvote
+    @post = Post.find(params[:post_id])
+    @upvote = @post.votes.build(value: 1)
+    @upvote.user = User.find(13)
+    if @upvote.save
+      redirect_to board_board_thread_path(@post.board_thread)
+    end
+  end
+
+  def downvote
+    @post = Post.find(params[:post_id])
+    @upvote = @post.votes.build(value: -1)
+    @upvote.user = User.find(13)
+    if @upvote.save
+      redirect_to board_board_thread_path(@post.board_thread)
+    end
+  end
+
   private
 
   def set_post_name(post)

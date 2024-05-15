@@ -1,4 +1,16 @@
+<% thread = post.board_thread %>
 <div class="post-footer">
+
   <span><%= post.rating %></span>
+  <div class="votes-container">
+    <%= button_to 'Upvote',
+    upvote_board_board_thread_post_path(thread, post),
+    params: { post_id: post.id} %>
+
+    <%= button_to 'Downvote',
+    downvote_board_board_thread_post_path(thread, post),
+    params: { post_id: post.id} %>
+  </div>
+
   <span><%= link_to "reply" %></span>
 </div>

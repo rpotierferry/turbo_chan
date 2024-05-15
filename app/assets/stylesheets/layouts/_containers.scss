@@ -50,6 +50,8 @@
   display: flex;
   justify-content: space-between;
   border-top: var(--border);
+  padding-top: var(--space-xxxxs);
+  align-items: center;
 }
 
 .post-thumb-content {
@@ -95,4 +97,9 @@
 .thread-footer {
   display:flex;
   justify-content: space-between;
+}
+
+.votes-container {
+  display: flex;
+  gap: var(--space-xxxxs)
 }
