@@ -1,4 +1,4 @@
-<main class="thread">
+<main class="thread" data-controller="toggle-form">
 
   <%= render "components/op", post: @op %>
 
@@ -7,7 +7,12 @@
   <% end %>
 
   <div class="thread-footer">
-    <%= link_to 'Reply to thread', new_board_board_thread_post_path(@board, @thread) %>
+    <div class="hidden" data-toggle-form-target="form">
+      <%= render 'components/new_post_form', board: @board, thread: @thread %>
+    </div>
+    <%= link_to 'Reply to thread',
+    '#',
+    data: { action: "click->toggle-form#toggleForm" } %>
     <%= link_to 'Back to board', board_path(@board) %>
   </div>
 

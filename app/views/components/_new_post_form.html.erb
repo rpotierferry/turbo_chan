@@ -1,0 +1,13 @@
+<%= form_with(
+  model: [board, thread, Post.new],
+  url: board_board_thread_posts_path(board, thread),
+  html: { class: "form-container" }) do |f| %>
+
+  <%= f.label "Content" %>
+  <%= f.text_area :content %>
+  <%= f.label "Upload a picture" %>
+  <%= f.file_field :photo %>
+  <%= f.label "Add a link to a photo" %>
+  <%= f.text_field :photo_url %>
+  <%= f.submit %>
+<% end %>
