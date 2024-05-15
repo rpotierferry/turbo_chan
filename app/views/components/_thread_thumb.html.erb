@@ -1,4 +1,3 @@
-<% post = thread.posts.first %>
 <div class="thumb" id="t<%= thread.bt_id %>">
   <div class="post-header">
     <span><%= post.name %></span>
@@ -12,7 +11,7 @@
         <%= image_tag post.photo_url,
             height: 100,
             width: 150 %>
-      <% else %>
+      <% elsif post.photo.attached? %>
         <%= cl_image_tag post.photo.key,
             height: 100,
             width: 150 %>
