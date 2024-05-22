@@ -6,6 +6,7 @@
     <%= turbo_frame_tag "post-#{post.id}" do %>
       <%= render "components/post", post: post %>
     <% end %>
+        <%= turbo_frame_tag "new_reply_post_#{post.id}" %>
   <% end %>
 
   <div class="thread-footer">
