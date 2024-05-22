@@ -32,6 +32,6 @@ class Post < ApplicationRecord
   end
 
   def inherit_board_id_from_parent
-    self.board_id = parent_post.board_id if parent_post.present?
+    self.board_thread_id = parent_post.board_thread_id if parent_post.present?
   end
 end

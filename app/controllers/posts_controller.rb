@@ -34,6 +34,25 @@ class PostsController < ApplicationController
     end
   end
 
+  def new_reply
+    set_board_and_thread
+    @post = Post.find(params[:id])
+    @reply = Reply.new
+  end
+
+  def create_reply
+    set_board_and_thread
+    @post = Post.find(params[:id])
+    @reply = @post.replies.build(reply_params)
+    @reply = set_post_name(@reply)
+    if @reply.save
+      redirect_to board_board_thread_path(@board, @thread)
+    else
+      render :new_reply, status: :unprocessable_entity
+    end
+  end
+
+
   private
 
   def set_post_name(post)
@@ -58,5 +77,9 @@ class PostsController < ApplicationController
 
   def post_params
     params.require(:post).permit(:title, :content, :photo, :photo_url)
+  end
+
+  def reply_params
+    params.require(:reply).permit(:content, :photo, :photo_url)
   end
 end
