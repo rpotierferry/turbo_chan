@@ -1,0 +1,61 @@
+<% thread = post.board_thread %>
+<% board =  thread.board %>
+<div class="post post-container">
+  <div class="post-header" id="p<%= post.p_id%>">
+    <span><%= post.name %></span>
+    <span><%= post.created_at %></span>
+  </div>
+  <div>
+    <% if post.photo_url.present? %>
+      <%= image_tag post.photo_url, height: 100, width: 150 %>
+    <% elsif post.photo.attached? %>
+      <%= cl_image_tag post.photo.key, height: 100, width: 150 %>
+    <% end %>
+    <p>
+      <%= post.content %>
+    </p>
+  </div>
+  <div class="post-footer">
+    <%= turbo_frame_tag "post_vote_#{post.id}" do %>
+      <span><%= post.rating %></span>
+    <% end %>
+
+    <div class="votes-container">
+      <%= form_with(url: upvote_board_board_thread_post_path(board, thread, post), method: :post) do %>
+        <%= hidden_field_tag :post_id, post.id %>
+        <%= hidden_field_tag :board_id, board.id %>
+        <%= hidden_field_tag :board_thread_id, thread.id %>
+        <%= button_tag(type: 'submit', class: 'btn-icon', data: { turbo_frame: "post_vote_#{post.id}" }) do %>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M10 17a.75.75 0 0 1-.75-.75V5.612L5.29 9.77a.75.75 0 0 1-1.08-1.04l5.25-5.5a.75.75 0 0 1 1.08 0l5.25 5.5a.75.75 0 1 1-1.08 1.04l-3.96-4.158V16.25A.75.75 0 0 1 10 17Z" clip-rule="evenodd" />
+          </svg>
+        <% end %>
+      <% end %>
+
+      <%= form_with(url: downvote_board_board_thread_post_path(board, thread, post), method: :post) do %>
+        <%= hidden_field_tag :post_id, post.id %>
+        <%= hidden_field_tag :board_id, board.id %>
+        <%= hidden_field_tag :board_thread_id, thread.id %>
+        <%= button_tag(type: 'submit', class: 'btn-icon', data: { turbo_frame: "post_vote_#{post.id}" }) do %>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M10 3a.75.75 0 0 1 .75.75v10.638l3.96-4.158a.75.75 0 1 1 1.08 1.04l-5.25 5.5a.75.75 0 0 1-1.08 0l-5.25-5.5a.75.75 0 1 1 1.08-1.04l3.96 4.158V3.75A.75.75 0 0 1 10 3Z" clip-rule="evenodd" />
+          </svg>
+
+        <% end %>
+      <% end %>
+    </div>
+    <!-- the turbo_frame attribute targets the corresponding frame in _post to display the new reply form -->
+    <span><%= link_to "reply", new_reply_board_board_thread_post_path(board, thread, post), data: {turbo_frame: "new-reply-post-#{post.id}"} %></span>
+</div>
+  <%= turbo_frame_tag "new-reply-post-#{post.id}" %>
+</div>
+
+<!-- Define the main div to contain replies -->
+<div class="replies-container">
+  <!-- This will be updated when new replies are added by users -->
+  <%= turbo_frame_tag "post-#{post.id}-replies" do %>
+    <% post.replies.each do |reply| %>
+      <%= render partial: 'components/post_with_replies', locals: { post: reply } %>
+    <% end %>
+  <% end %>
+</div>

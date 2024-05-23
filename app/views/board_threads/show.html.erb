@@ -4,23 +4,11 @@
 
   <% @posts.each do |post| %>
 
-<!-- define the frame for the post -->
+  <!-- define the frame for the post -->
     <%= turbo_frame_tag "post-#{post.id}" do %>
-      <%= render "components/post", post: post %>
+      <%= render partial: 'components/post_with_replies', locals: { post: post } %>
     <% end %>
 
-<!-- define the main div to conain replies -->
-          <div class="replies-container">
-            <!-- this will be updated  when new replies are added by users -->
-            <%= turbo_frame_tag "post-#{post.id}-replies" do %>
-                <% post.replies.each do |reply| %>
-                  <!-- this frame isn't used for now -->
-                  <%= turbo_frame_tag "reply-#{reply.id}" do %>
-                    <%= render "components/post", post: reply %>
-                  <% end %>
-                <% end %>
-            <% end %>
-          </div>
   <% end %>
 
   <div class="thread-footer">
