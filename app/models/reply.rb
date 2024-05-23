@@ -4,6 +4,7 @@ class Reply < Post
   private
 
   def set_default_type
-    self.type = 'Reply'
+    puts 'setting default'
+    self.type ||= 'Reply'
   end
 end

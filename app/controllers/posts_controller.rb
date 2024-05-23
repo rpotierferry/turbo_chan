@@ -45,6 +45,8 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     @reply = @post.replies.build(reply_params)
     @reply = set_post_name(@reply)
+    @reply.type = "Reply"
+    @reply.photo_url = nil if @reply.photo_url.blank?
     if @reply.save
       redirect_to board_board_thread_path(@board, @thread)
     else

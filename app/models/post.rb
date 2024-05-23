@@ -3,7 +3,7 @@ class Post < ApplicationRecord
   belongs_to :board_thread, counter_cache: true
 
   has_many :votes, dependent: :destroy
-  has_many :replies, -> { where(type: 'Reply') }, class_name: 'Post', foreign_key: 'parent_post_id', dependent: :destroy
+  has_many :replies, class_name: 'Post', foreign_key: 'parent_post_id', dependent: :destroy
   belongs_to :parent_post, class_name: 'Post', optional: true
 
   has_one_attached :photo

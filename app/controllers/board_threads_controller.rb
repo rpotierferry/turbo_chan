@@ -3,9 +3,8 @@ class BoardThreadsController < ApplicationController
   before_action :set_thread, only: ['show']
 
   def show
-    @posts = @thread.posts
-    @op = @posts.find(&:is_op)
-    @posts = @posts.reject(&:is_op)
+    @op = @thread.posts.find_by(is_op: true)
+    @posts = @thread.posts.where(is_op: false, type: nil).includes(:replies)
   end
 
   def new

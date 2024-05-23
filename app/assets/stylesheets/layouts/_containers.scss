@@ -107,3 +107,8 @@
 .block {
   display: block;
 }
+
+.replies-container {
+  display: flex;
+  padding-left: var(--space-m);
+}

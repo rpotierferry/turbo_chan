@@ -1,7 +1,7 @@
 <div class="post post-container">
   <%= render 'components/post_header', post: post %>
   <div>
-    <% if post.photo_url != '' %>
+    <% if post.photo_url.present? %>
       <%= image_tag post.photo_url,
       height: 100,
       width: 150 %>
@@ -15,4 +15,5 @@
     </p>
   </div>
   <%= render 'components/post_footer', post: post %>
+  <%= turbo_frame_tag "new_reply_post_#{post.id}" %>
 </div>
