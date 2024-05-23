@@ -15,5 +15,6 @@
     </p>
   </div>
   <%= render 'components/post_footer', post: post %>
-  <%= turbo_frame_tag "new_reply_post_#{post.id}" %>
+  <!-- this will we filled by the new reply form called in the _post_footer -->
+  <%= turbo_frame_tag "new-reply-post-#{post.id}" %>
 </div>

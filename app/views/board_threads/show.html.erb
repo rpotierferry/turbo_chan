@@ -3,15 +3,24 @@
   <%= render "components/op", post: @op %>
 
   <% @posts.each do |post| %>
+
+<!-- define the frame for the post -->
     <%= turbo_frame_tag "post-#{post.id}" do %>
       <%= render "components/post", post: post %>
     <% end %>
 
-        <div class="replies-container">
-          <% post.replies.each do |reply| %>
-            <%= render "components/post", post: reply %>
-          <% end %>
-        </div>
+<!-- define the main div to conain replies -->
+          <div class="replies-container">
+            <!-- this will be updated  when new replies are added by users -->
+            <%= turbo_frame_tag "post-#{post.id}-replies" do %>
+                <% post.replies.each do |reply| %>
+                  <!-- this frame isn't used for now -->
+                  <%= turbo_frame_tag "reply-#{reply.id}" do %>
+                    <%= render "components/post", post: reply %>
+                  <% end %>
+                <% end %>
+            <% end %>
+          </div>
   <% end %>
 
   <div class="thread-footer">

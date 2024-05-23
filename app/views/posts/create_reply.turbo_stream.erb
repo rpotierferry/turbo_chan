@@ -1,0 +1,3 @@
+# turbo_stream create_reply
+<%= turbo_stream.append "post-#{@post.id}-replies", partial: "components/post", locals: { post: @reply }  %>
+<%= turbo_stream.update "new-reply-post-#{@post.id}", "" %>

@@ -1,4 +1,4 @@
-<%= turbo_frame_tag "new_reply_post_#{@post.id}" do %>
+<%= turbo_frame_tag "new-reply-post-#{@post.id}" do %>
   <%= form_with(model: [@board, @thread, @post, @reply],
   url:  create_reply_board_board_thread_post_path(@board, @thread, @post),
   html: {class: "form-container"}) do |f| %>

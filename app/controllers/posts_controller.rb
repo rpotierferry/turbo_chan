@@ -48,12 +48,14 @@ class PostsController < ApplicationController
     @reply.type = "Reply"
     @reply.photo_url = nil if @reply.photo_url.blank?
     if @reply.save
-      redirect_to board_board_thread_path(@board, @thread)
+      respond_to do |format|
+        format.html { redirect_to board_board_thread_path(@board, @thread), notice: "Reply created" }
+        format.turbo_stream
+      end
     else
       render :new_reply, status: :unprocessable_entity
     end
   end
-
 
   private
 
