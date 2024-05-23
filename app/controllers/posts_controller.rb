@@ -74,7 +74,7 @@ class PostsController < ApplicationController
   end
 
   def setup_vote
-    @post = Post.find(params[:post_id])
+    @post = Post.find(params[:id])
     @board = Board.find(params[:board_id])
     @thread = BoardThread.find(params[:board_thread_id])
   end
