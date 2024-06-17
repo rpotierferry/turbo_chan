@@ -25,25 +25,26 @@
     <%= turbo_frame_tag "post_vote_#{post.id}" do %>
       <span><%= post.rating %></span>
     <% end %>
-
-    <div class="votes-container">
-      <%= form_with(url: upvote_board_board_thread_post_path(board, thread, post), method: :post) do %>
-        <%= button_tag(type: 'submit', class: 'btn-icon', data: { turbo_frame: "post_vote_#{post.id}" }) do %>
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-            <path fill-rule="evenodd" d="M10 17a.75.75 0 0 1-.75-.75V5.612L5.29 9.77a.75.75 0 0 1-1.08-1.04l5.25-5.5a.75.75 0 0 1 1.08 0l5.25 5.5a.75.75 0 1 1-1.08 1.04l-3.96-4.158V16.25A.75.75 0 0 1 10 17Z" clip-rule="evenodd" />
-          </svg>
+    <%= turbo_frame_tag "post_#{post.id}_vote_buttons" do %>
+      <div class="votes-container">
+        <%= form_with(url: upvote_post_vote_path(post), method: :post) do %>
+          <%= button_tag(type: 'submit', class: 'btn-icon', data: { turbo_frame: "post_vote_#{post.id}" }) do %>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M10 17a.75.75 0 0 1-.75-.75V5.612L5.29 9.77a.75.75 0 0 1-1.08-1.04l5.25-5.5a.75.75 0 0 1 1.08 0l5.25 5.5a.75.75 0 1 1-1.08 1.04l-3.96-4.158V16.25A.75.75 0 0 1 10 17Z" clip-rule="evenodd" />
+            </svg>
+          <% end %>
         <% end %>
-      <% end %>
 
-      <%= form_with(url: downvote_board_board_thread_post_path(board, thread, post), method: :post) do %>
-        <%= button_tag(type: 'submit', class: 'btn-icon', data: { turbo_frame: "post_vote_#{post.id}" }) do %>
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-            <path fill-rule="evenodd" d="M10 3a.75.75 0 0 1 .75.75v10.638l3.96-4.158a.75.75 0 1 1 1.08 1.04l-5.25 5.5a.75.75 0 0 1-1.08 0l-5.25-5.5a.75.75 0 1 1 1.08-1.04l3.96 4.158V3.75A.75.75 0 0 1 10 3Z" clip-rule="evenodd" />
-          </svg>
+        <%= form_with(url: downvote_post_vote_path(post), method: :post) do %>
+          <%= button_tag(type: 'submit', class: 'btn-icon', data: { turbo_frame: "post_vote_#{post.id}" }) do %>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M10 3a.75.75 0 0 1 .75.75v10.638l3.96-4.158a.75.75 0 1 1 1.08 1.04l-5.25 5.5a.75.75 0 0 1-1.08 0l-5.25-5.5a.75.75 0 1 1 1.08-1.04l3.96 4.158V3.75A.75.75 0 0 1 10 3Z" clip-rule="evenodd" />
+            </svg>
 
+          <% end %>
         <% end %>
-      <% end %>
-    </div>
+      </div>
+    <% end %>
     <!-- the turbo_frame attribute targets the corresponding frame in _post to display the new reply form -->
     <span><%= link_to "reply", new_reply_board_board_thread_post_path(board, thread, post), data: {turbo_frame: "new-reply-post-#{post.id}"} %></span>
   </div>
