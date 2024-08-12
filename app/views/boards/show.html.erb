@@ -4,7 +4,8 @@
   </div>
   <%= link_to "Create thread",
   "#",
-  data: { action: "click->toggle-form#toggleForm" }%>
+  data: { action: "click->toggle-form#toggleForm" },
+  class: "btn-new-thread" %>
 
   <% if @rule_post %>
     <%= render 'components/rule_post', post: @rule_post %>
@@ -18,5 +19,5 @@
 
 
 
-  <%= link_to 'Back to board list', boards_path %>
+  <%= link_to 'Back to board list', boards_path, class: "btn-back" %>
 </main>

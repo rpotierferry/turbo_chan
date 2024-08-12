@@ -7,3 +7,15 @@
     vertical-align: middle;
   }
 }
+
+.btn-new-thread {
+  background-color: var(--color-glint);
+  padding: var(--space-xxxs);
+  border-radius: var(--border-radius);
+}
+
+.btn-back {
+  background-color: var(--color-primary);
+  padding: var(--space-xxxs);
+  border-radius: var(--border-radius); 
+}
