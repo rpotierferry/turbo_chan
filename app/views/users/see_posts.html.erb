@@ -1,0 +1,7 @@
+<% if @posts %>
+  <% @posts.each do |post| %>
+    <%= link_to post.title, board_board_thread_path(post.board_thread.board, post.board_thread, anchor: post.p_id)%>
+  <% end %>
+<% else %>
+  <p>No post for this user</p>
+<% end %>

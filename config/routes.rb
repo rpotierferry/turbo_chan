@@ -22,5 +22,10 @@ Rails.application.routes.draw do
       end
     end
   end
-  resources :users, only: [:show]
+  resources :users, only: [:show] do
+    member do
+      get 'see_posts'
+      get 'see_replies'
+    end
+  end
 end

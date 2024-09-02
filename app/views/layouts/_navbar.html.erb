@@ -1,7 +1,12 @@
 <div>
-  <% if current_user %>
-    <%= link_to "profile", user_path(current_user) %>
-  <% else %>
-    <%= link_to "Login", new_user_session_path %>
-  <% end %>
+  <div>
+    <%= link_to 'boards', boards_path %>
+  </div>
+  <div>
+      <% if current_user %>
+        <%= link_to "profile", user_path(current_user) %>
+      <% else %>
+        <%= link_to "Login", new_user_session_path %>
+      <% end %>
+  </div>
 </div>

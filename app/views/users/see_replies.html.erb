@@ -1,0 +1,7 @@
+<% if @replies %>
+  <% @replies.each do |reply| %>
+    <%= link_to reply.content, board_board_thread_path(reply.board_thread.board, reply.board_thread, anchor: reply.p_id)%>
+  <% end %>
+<% else %>
+  <p>No reply for this user</p>
+<% end %>
