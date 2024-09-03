@@ -1,4 +1,5 @@
 class BoardThreadsController < ApplicationController
+  before_action :authenticate_user!, only: ['create']
   before_action :set_board, only: ['show', 'new', 'create']
   before_action :set_thread, only: ['show']
 
@@ -17,11 +18,8 @@ class BoardThreadsController < ApplicationController
     @thread.board = @board
     @post = Post.new(post_params)
     @post.is_op = true
-    if current_user
-      @post.name = current_user.username
-    else
-      @post.name = "Anonymous"
-    end
+    @post.name = current_user.username
+    @post.user_id = current_user.id
     @post.board_thread = @thread
     if @post.save && @thread.save
       redirect_to board_board_thread_path(@board, @thread)

@@ -62,6 +62,7 @@ class PostsController < ApplicationController
   def set_post_name(post)
     if current_user
       post.name = current_user.username
+      post.user_id = current_user.id
     else
       post.name = 'Anonymous'
     end
