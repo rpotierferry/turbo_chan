@@ -1,0 +1,7 @@
+<% if @subs %>
+  <% @subs.each do |sub| %>
+    <%= link_to sub.board.name, board_path(sub.board) %>
+  <% end %>
+<% else %>
+  <p>This user has no subscription yet</p>
+<% end %>

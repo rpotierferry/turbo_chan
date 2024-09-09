@@ -26,6 +26,7 @@ Rails.application.routes.draw do
     member do
       get 'see_posts'
       get 'see_replies'
+      get 'see_subscriptions'
     end
   end
 end

@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_many :posts
   has_many :votes
+  has_many :subscriptions
 
   def upvotes?(post)
     post.votes.where(user_id: id).any? && post.votes.find_by(user_id: id).value == 1

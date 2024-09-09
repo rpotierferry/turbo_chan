@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: %w[show see_posts see_replies]
+  before_action :set_user, only: %w[show see_posts see_replies see_subscriptions]
   def show
     @user = User.find(current_user.id)
   end
@@ -10,6 +10,10 @@ class UsersController < ApplicationController
 
   def see_replies
     @replies = @user.posts.where(is_op: false)
+  end
+
+  def see_subscriptions
+    @subs = @user.subscriptions
   end
 
   private
