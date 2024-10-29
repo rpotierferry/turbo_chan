@@ -20,4 +20,9 @@
 
 
   <%= link_to 'Back to board list', boards_path, class: "btn-back" %>
+  <% if @user_is_sub %>
+    <p class="btn-sub">Subbed</p>
+  <% else %>
+    <%= button_to 'Subscribe to board', create_board_sub_board_path(@board), class: "btn-sub" %>
+  <% end %>
 </main>

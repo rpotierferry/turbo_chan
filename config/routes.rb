@@ -3,6 +3,9 @@ Rails.application.routes.draw do
 
   root 'boards#index'
   resources :boards do
+    member do
+      post 'create_board_sub'
+    end
     resources :board_threads do
       resources :posts do
         member do
