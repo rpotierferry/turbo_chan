@@ -1,7 +1,7 @@
 class Board < ApplicationRecord
   before_create :assign_b_id
   has_many :board_threads, dependent: :destroy
-  belongs_to :subscriptions
+  has_many :subscriptions
 
   validates :name, :handle, :category, :description, presence: true
   validates :handle, uniqueness: true, format: { with: %r{/\w+/} }
