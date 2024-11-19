@@ -8,7 +8,9 @@
   class: "btn-new-thread" %>
 
   <% if @rule_post %>
-    <%= render 'components/rule_post', post: @rule_post %>
+    <%= link_to board_board_thread_path(@board, @rule_thread) do %>
+      <%= render 'components/thread_thumb', thread: @rule_thread, post: @rule_post %>
+    <% end %>
   <% end %>
 
   <% @thumbs.each do |t| %>

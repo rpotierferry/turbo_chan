@@ -10,11 +10,11 @@
       <% if post.photo_url != '' %>
         <%= image_tag post.photo_url,
             height: 100,
-            width: 150 %>
+            width: 100 %>
       <% elsif post.photo.attached? %>
         <%= cl_image_tag post.photo.key,
             height: 100,
-            width: 150 %>
+            width: 100 %>
       <% end %>
       <p><%= post.content %></p>
     </div>

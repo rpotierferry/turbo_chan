@@ -19,7 +19,7 @@ class PostsController < ApplicationController
   def upvote
     setup_vote
     @upvote = @post.votes.build(value: 1)
-    @upvote.user = User.find(13)
+    @upvote.user = current_user
     if @upvote.save
       redirect_to board_board_thread_path(@board, @thread)
     end
@@ -28,7 +28,7 @@ class PostsController < ApplicationController
   def downvote
     setup_vote
     @upvote = @post.votes.build(value: -1)
-    @upvote.user = User.find(13)
+    @upvote.user = current_user
     if @upvote.save
       redirect_to board_board_thread_path(@board, @thread)
     end

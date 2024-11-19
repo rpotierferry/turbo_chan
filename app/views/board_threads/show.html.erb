@@ -1,7 +1,9 @@
 <main class="thread" data-controller="toggle-form">
 
-  <%= render "components/op", post: @op %>
-
+  <%= turbo_frame_tag "post-#{@op.id}" do %>
+    <%= render "components/post_with_replies", post: @op %>
+  <% end %>
+  
   <% @posts.each do |post| %>
 
   <!-- define the frame for the post -->
