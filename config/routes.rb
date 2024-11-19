@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :boards do
     member do
       post 'create_board_sub'
+      post 'destroy_board_sub'
     end
     resources :board_threads do
       resources :posts do

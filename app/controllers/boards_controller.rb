@@ -1,6 +1,6 @@
 class BoardsController < ApplicationController
-  before_action :set_board, only: %w[show create_board_sub]
-  before_action :authenticate_user!, only: %w[create_board_sub]
+  before_action :set_board, only: %w[show create_board_sub destroy_board_sub]
+  before_action :authenticate_user!, only: %w[create_board_sub destroy_board_sub]
 
   def index
     @boards = Board.all.group_by(&:category).sort
@@ -22,6 +22,14 @@ class BoardsController < ApplicationController
       Subscription.create(board: @board, user: current_user)
     end
     redirect_to board_path(@board), notice: "You are now subscribed to this board."
+  end
+
+  def destroy_board_sub
+    if user_is_sub?(@board)
+      @sub = Subscription.find_by(user_id: current_user.id, board_id: @board.id)
+      @sub.delete
+    end
+    redirect_to board_path(@board), notice: "You are now unsubscribed to this board."
   end
 
   private
